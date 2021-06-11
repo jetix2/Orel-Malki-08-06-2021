@@ -1,25 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import Navbar from "./components/Navbar";
+import Favorites from "./screens/Favorites";
+import Home from "./screens/Home";
+import URLS from "./routes";
+import { getCityForecast } from "./actions/cityForecastActions";
+import { getCurrentLocation } from "./apis/apis";
 
-function App() {
+const App = () => {
+  const dispatch = useDispatch();
+
+  const { darkMode } = useSelector((state) => state.theme);
+
+  useEffect(() => {
+    const getUserForecast = async () => {
+      const data = await getCurrentLocation();
+      if (data) {
+        dispatch(getCityForecast(data.Key, data.LocalizedName));
+      } else {
+        dispatch(getCityForecast(215854, "Tel Aviv"));
+      }
+    };
+    getUserForecast();
+  }, [dispatch]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className={darkMode ? "app-inverse" : ""}>
+        <Navbar />
+        <Switch>
+          <Route path={URLS.favorites} component={Favorites} />
+          <Route exact path={URLS.home} component={Home} />
+        </Switch>
+        <ToastContainer />
+        <footer className="footer">All right reserved Orel Malki 2021©</footer>
+      </div>
+      
+    </Router>
   );
-}
+};
 
 export default App;

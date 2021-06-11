@@ -1,13 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+window,
+html,
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+  font-family: "Courier New", Courier, monospace;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+
+.favorite{
+  cursor: pointer;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2%;
+  background-color: black;
+  color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+  
+}
+
+.ui.cards > .ui.card:hover {
+  transform: translateY(-9px);
+}
+.h3 {
+  font-family: 'Poppins', sans-serif;
+  color: red;
+}
+/* Dark mode UI */
+
+.app-inverse {
+  background-color: #303030;
+  color: rgba(255, 255, 255, 0.9);
+  min-height: 100vh;
+}
+
+.inverse {
+  background: #1b1c1d !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.inverse-search input,
+.inverse-search div div {
+  background: gray !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+span,
+.cardcontent {
+  margin: 25px;
+}
+
+.small {
+  margin: 20px auto;
+}
+
+.tiny {
+  margin-bottom: 5px;
+}
+
+.center.aligned.row {
+  margin-bottom: 1rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .ui.five.cards {
+    margin-top: 1rem;
+  }
 }
